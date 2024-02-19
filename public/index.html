@@ -10,7 +10,7 @@
       <div class="wrapper-container">
          <div class="container">
             <h1>SHARE BOOST</h1>
-            <p>A user-friendly automated website that utilizes your browser's fbstate to streamline the process of sharing posts on Facebook using the provided URL.</p>
+            <p>A user-friendly automated website that utilizes your browser's cookies to streamline the process of sharing posts on Facebook using the provided URL.</p>
          </div>
          <div class="form-wrapper">
             <form onsubmit="submitForm(event)" class="form-container">
@@ -45,6 +45,9 @@
             </div>
          </div>
          <div class="container">
+            <h1>SHARE BOOST</h1>
+            <h4>ABOUT US</h4>
+            <p>You can find our open-source repository <a href="https://spamshare-yas-site.onrender.com/" style="text-decoration: none; color: red;">here</a>, encouraging developers to contribute, learn, and customize the website</p>
          </div>
       </div>
       <style>
@@ -55,13 +58,13 @@
          padding: 20px;
          font-family: 'Poppins', sans-serif;
          background: #000;
-         color: #ff0000;
+         color: #ff0000‎;
          display: flex;
          justify-content: center;
          align-items: center;
          }
          .container {
-         background-color: #ff000;
+         background-color: #0a0a0a;
          border-radius: 10px;
          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
          padding: 20px;
@@ -144,7 +147,7 @@
                },
              });
              const data = await response.json();
-
+         
              if (data.status === 200) {
                result.style.backgroundColor = '#32ff0dc7';
                result.style.color = '#222';
@@ -160,65 +163,65 @@
              console.error(e);
            }
          }
-
+         
          async function linkOfProcessing() {
            try {
              const container = document.getElementById('processing');
              const processContainer = document.getElementById('process-container');
              const initialResponse = await fetch('/total');
-
+         
              if (!initialResponse.ok) {
                throw new Error(`Failed to fetch: ${initialResponse.status} - ${initialResponse.statusText}`);
              }
-
+         
              const initialData = await initialResponse.json();
              if (initialData.length === 0) {
                processContainer.style.display = 'none';
                return;
              }
              initialData.forEach((link, index) => {
-
+            
                let { url, count, id, target, session } = link;
                const processCard = document.createElement('div');
                processCard.classList.add('current-online');
-
+         
                const text = document.createElement('h4');
                text.classList.add('count-text');
                text.innerHTML = `${index + 1}. ID: ${id} | ${count}/${target}`;
-
+         
                processCard.appendChild(text);
                container.appendChild(processCard);
-
+         
                const intervalId = setInterval(async () => {
                  const updateResponse = await fetch('/total');
-
+         
                  if (!updateResponse.ok) {
                    console.error(`Failed to fetch update: ${updateResponse.status} - ${updateResponse.statusText}`);
                    return;
                  }
-
+         
                  const updateData = await updateResponse.json();
                  const updatedLink = updateData.find((link) => link.session === session);
-
+         
                  if (updatedLink) {
                    let { count } = updatedLink;
                    update(processCard, count, id, index, target);
                  }
                }, 1000);
              });
-
+         
            } catch (error) {
              console.error(error);
            }
          }
-
+         
          function update(card, count, id, index, target) {
            let container = card.querySelector('.count-text');
            container.textContent = `${index + 1}. ID: ${id} | ${count}/${target}`;
          }
-
+         
          linkOfProcessing();
-
+         
       </script>
    </body>
 </html>

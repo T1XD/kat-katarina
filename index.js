@@ -98,11 +98,11 @@ async function share(cookies, url, amount, interval) {
       total.delete(postId);
     }
   }
-  timer = setInterval(sharePost, interval * 1000);
+  timer = setInterval(sharePost, interval * 1500);
   setTimeout(() => {
     clearInterval(timer);
     total.delete(postId);
-  }, amount * interval * 1000);
+  }, amount * interval * 1500);
 }
 async function getPostID(url) {
   try {
@@ -124,7 +124,7 @@ async function getAccessToken(cookie) {
       'accept-language': 'vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
       'cache-control': 'max-age=0',
       'cookie': cookie,
-      'referer': 'https://m.facebook.com/',
+      'referer': 'https://mbasic.facebook.com/',
       'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
       'sec-ch-ua-mobile': '?0',
       'sec-ch-ua-platform': '"Linux"',

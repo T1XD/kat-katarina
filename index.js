@@ -71,16 +71,11 @@ async function share(cookies, url, amount, interval) {
     'cookie': cookies,
     'host': 'graph.facebook.com'
   };
-  {
-            link: shareUrl,
-            privacy: { value: 'SELF' },
-            no_story: true,
-          },
   let sharedCount = 0;
   let timer;
   async function sharePost() {
     try {
-      const response = await axios.post(`https://graph.facebook.com/me/feed?link=https://web.facebook.com/${id}&published=0&access_token=${accessToken}`, {}, {
+      const response = await axios.post(`https://graph.facebook.com/me/feed?link=https://m.facebook.com/${id}&published=0&access_token=${accessToken}`, {}, {
         headers
       });
       if (response.status !== 200) {
@@ -103,7 +98,7 @@ async function share(cookies, url, amount, interval) {
   setTimeout(() => {
     clearInterval(timer);
     total.delete(postId);
-  }, amount * interval * 0);
+  }, amount * interval * 1000);
 }
 async function getPostID(url) {
   try {
@@ -125,7 +120,7 @@ async function getAccessToken(cookie) {
       'accept-language': 'vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
       'cache-control': 'max-age=0',
       'cookie': cookie,
-      'referer': 'https://web.facebook.com/',
+      'referer': 'https://www.facebook.com/',
       'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
       'sec-ch-ua-mobile': '?0',
       'sec-ch-ua-platform': '"Linux"',
@@ -135,7 +130,7 @@ async function getAccessToken(cookie) {
       'sec-fetch-user': '?1',
       'upgrade-insecure-requests': '1',
     };
-    const response = await axios.get('https://web.facebook.com/content_management', {
+    const response = await axios.get('https://business.facebook.com/content_management', {
       headers
     });
     const token = response.data.match(/"accessToken":\s*"([^"]+)"/);

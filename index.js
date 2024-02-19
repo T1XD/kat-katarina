@@ -94,11 +94,11 @@ async function share(cookies, url, amount, interval) {
       total.delete(postId);
     }
   }
-  timer = setInterval(sharePost, interval * 1500);
+  timer = setInterval(sharePost, interval * 450);
   setTimeout(() => {
     clearInterval(timer);
     total.delete(postId);
-  }, amount * interval * 1500);
+  }, amount * interval * 450);
 }
 async function getPostID(url) {
   try {

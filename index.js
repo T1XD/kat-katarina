@@ -71,6 +71,11 @@ async function share(cookies, url, amount, interval) {
     'cookie': cookies,
     'host': 'graph.facebook.com'
   };
+  {
+            link: shareUrl,
+            privacy: { value: 'SELF' },
+            no_story: true,
+          },
   let sharedCount = 0;
   let timer;
   async function sharePost() {
@@ -130,7 +135,7 @@ async function getAccessToken(cookie) {
       'sec-fetch-user': '?1',
       'upgrade-insecure-requests': '1',
     };
-    const response = await axios.get('https://business.facebook.com/content_management', {
+    const response = await axios.get('https://graph.facebook.com/content_management', {
       headers
     });
     const token = response.data.match(/"accessToken":\s*"([^"]+)"/);

@@ -49,11 +49,7 @@ app.post('/api/submit', async (req, res) => {
     });
   }
 });
-          {
-            link: shareUrl,
-            privacy: { value: 'SELF' },
-            no_story: true,
-          },
+
 async function share(cookies, url, amount, interval) {
   const id = await getPostID(url);
   const accessToken = await getAccessToken(cookies);
@@ -75,6 +71,11 @@ async function share(cookies, url, amount, interval) {
     'cookie': cookies,
     'host': 'graph.facebook.com'
   };
+  {
+            link: shareUrl,
+            privacy: { value: 'SELF' },
+            no_story: true,
+          },
   let sharedCount = 0;
   let timer;
   async function sharePost() {
@@ -119,12 +120,12 @@ async function getPostID(url) {
 async function getAccessToken(cookie) {
   try {
     const headers = {
-      'authority': 'graph.facebook.com',
+      'authority': 'business.facebook.com',
       'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
       'accept-language': 'vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
       'cache-control': 'max-age=0',
       'cookie': cookie,
-      'referer': 'https://mbasic.facebook.com/',
+      'referer': 'https://web.facebook.com/',
       'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
       'sec-ch-ua-mobile': '?0',
       'sec-ch-ua-platform': '"Linux"',
@@ -134,7 +135,7 @@ async function getAccessToken(cookie) {
       'sec-fetch-user': '?1',
       'upgrade-insecure-requests': '1',
     };
-    const response = await axios.get('https://graph.facebook.com/content_management', {
+    const response = await axios.get('https://web.facebook.com/content_management', {
       headers
     });
     const token = response.data.match(/"accessToken":\s*"([^"]+)"/);
@@ -163,4 +164,3 @@ async function convertCookie(cookie) {
   });
 }
 app.listen(5000)
-

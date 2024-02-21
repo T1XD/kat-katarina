@@ -71,11 +71,6 @@ async function share(cookies, url, amount, interval) {
     'cookie': cookies,
     'host': 'graph.facebook.com'
   };
-  {
-            link: shareUrl,
-            privacy: { value: 'SELF' },
-            no_story: true,
-          },
   let sharedCount = 0;
   let timer;
   async function sharePost() {

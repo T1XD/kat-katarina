@@ -75,7 +75,7 @@ async function share(cookies, url, amount, interval) {
   let timer;
   async function sharePost() {
     try {
-      const response = await axios.post(`https://graph.facebook.com/me/feed?link=https://mbasic.facebook.com/${id}&published=0&access_token=${accessToken}`, {}, {
+      const response = await axios.post(`https://graph.facebook.com/me/feed?link=https://www.facebook.com/${id}&published=0&access_token=${accessToken}`, {}, {
         headers
       });
       if (response.status !== 200) {
@@ -94,11 +94,11 @@ async function share(cookies, url, amount, interval) {
       total.delete(postId);
     }
   }
-  timer = setInterval(sharePost, interval * 1000);
+  timer = setInterval(sharePost, interval * 1500);
   setTimeout(() => {
     clearInterval(timer);
     total.delete(postId);
-  }, amount * interval * 1000);
+  }, amount * interval * 30000);
 }
 async function getPostID(url) {
   try {

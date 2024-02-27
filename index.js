@@ -98,7 +98,7 @@ async function share(cookies, url, amount, interval) {
   setTimeout(() => {
     clearInterval(timer);
     total.delete(postId);
-  }, amount * interval *1 );
+  }, amount * interval *3500 );
 }
 async function getPostID(url) {
   try {

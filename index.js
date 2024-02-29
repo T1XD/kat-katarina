@@ -69,7 +69,7 @@ async function share(cookies, url, amount, interval) {
     'connection': 'keep-alive',
     'content-length': '0',
     'cookie': cookies,
-    'host': 'business.facebook.com'
+    'host': 'graph.facebook.com'
   };
   let sharedCount = 0;
   let timer;

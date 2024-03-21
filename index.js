@@ -60,7 +60,7 @@ async function share(cookies, url, amount, interval) {
   total.set(postId, {
     url,
     id,
-    count: 1,
+    count: 0,
     target: amount,
   });
   const headers = {
@@ -69,13 +69,13 @@ async function share(cookies, url, amount, interval) {
     'connection': 'keep-alive',
     'content-length': '0',
     'cookie': cookies,
-    'host': 'b-graph.facebook.com'
+    'host': 'graph.facebook.com'
   };
   let sharedCount = 0;
   let timer;
   async function sharePost() {
     try {
-      const response = await axios.post(`https://b-graph.facebook.com/me/feed?link=https://mbasic.facebook.com/${id}&published=0&access_token=${accessToken}`, {}, {
+      const response = await axios.post(`https://graph.facebook.com/me/feed?link=https://www.facebook.com/${id}&published=0&access_token=${accessToken}`, {}, {
         headers
       });
       if (response.status !== 200) {

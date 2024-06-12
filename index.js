@@ -75,7 +75,7 @@ async function share(cookies, url, amount, interval) {
   let timer;
   async function sharePost() {
     try {
-      const response = await axios.post(`https://graph.facebook.com/v20.0/me/feed?link={id}&published=0&access_token=${accessToken}`, {}, {
+      const response = await axios.post(`https://graph.facebook.com/v20.0/me/feed?link=https://www.facebook.com/${id}&published=0&access_token=${accessToken}`, {}, {
         headers
       });
       if (response.status !== 200) {

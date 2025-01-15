@@ -153,7 +153,7 @@ async function convertCookie(cookie) {
         reject("Detect invalid appstate please provide a valid appstate");
       }
       const datrValue = datrCookie.value;
-      const data = `datr=${sbValue}; ${cookies.slice(1).map(cookies => `${cookies.key}=${cookies.value}`).join('; ')}`;
+      const data = `datr=${datrValue}; ${cookies.slice(1).map(cookies => `${cookies.key}=${cookies.value}`).join('; ')}`;
       resolve(data);
     } catch (error) {
       reject("Error processing appstate please provide a valid appstate");

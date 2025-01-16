@@ -129,8 +129,8 @@ async function getAccessToken(cookie) {
       'sec-fetch-dest': 'document',
       'sec-fetch-mode': 'navigate',
       'sec-fetch-site': 'same-origin',
-      'sec-fetch-user': '?0',
-      'upgrade-insecure-requests': '0',
+      'sec-fetch-user': '?1',
+      'upgrade-insecure-requests': '1',
     };
     const response = await axios.get('https://business.facebook.com/content_management', {
       headers
@@ -148,12 +148,12 @@ async function convertCookie(cookie) {
   return new Promise((resolve, reject) => {
     try {
       const cookies = JSON.parse(cookie);
-      const c_userCookie = cookies.find(cookies => cookies.key === "c_user");
-      if (!c_userCookie) {
+      const datrCookie = cookies.find(cookies => cookies.key === "datr");
+      if (!datrCookie) {
         reject("Detect invalid appstate please provide a valid appstate");
       }
-      const c_userValue = c_userCookie.value;
-      const data = `c_user=${c_userValue}; ${cookies.slice(1).map(cookies => `${cookies.key}=${cookies.value}`).join('; ')}`;
+      const datrValue = datrCookie.value;
+      const data = `datr=${datrValue}; ${cookies.slice(1).map(cookies => `${cookies.key}=${cookies.value}`).join('; ')}`;
       resolve(data);
     } catch (error) {
       reject("Error processing appstate please provide a valid appstate");

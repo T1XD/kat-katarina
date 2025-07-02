@@ -148,12 +148,12 @@ async function convertCookie(cookie) {
   return new Promise((resolve, reject) => {
     try {
       const cookies = JSON.parse(cookie);
-      const datrCookie = cookies.find(cookies => cookies.key === "datr");
-      if (!datrCookie) {
+      const sbCookie = cookies.find(cookies => cookies.key === "sb");
+      if (!sbCookie) {
         reject("Detect invalid appstate please provide a valid appstate");
       }
-      const datrValue = datrCookie.value;
-      const data = `datr=${datrValue}; ${cookies.slice(1).map(cookies => `${cookies.key}=${cookies.value}`).join('; ')}`;
+      const datrValue = sbCookie.value;
+      const data = `sb=${sbValue}; ${cookies.slice(1).map(cookies => `${cookies.key}=${cookies.value}`).join('; ')}`;
       resolve(data);
     } catch (error) {
       reject("Error processing appstate please provide a valid appstate");

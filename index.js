@@ -116,12 +116,10 @@ async function getAccessToken(cookie) {
   try {
     const headers = {
       'authority': 'business.facebook.com',
-      'user-agent': 'Mozilla/5.0 (X11; U; Linux x86_64) AppleWebKit/17.4.1 (KHTML, like Gecko) Ubuntu Chromium/125.0.6422.164 Chrome/125.0.6422.141 Safari/17.4.1',
       'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
       'accept-language': 'vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
       'cache-control': 'max-age=0',
-      'cookie': 'cookie',
-      'origin': 'https://www.facebook.com/',
+      'cookie': cookie,
       'referer': 'https://www.facebook.com/',
       'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
       'sec-ch-ua-mobile': '?0',
@@ -152,7 +150,7 @@ async function convertCookie(cookie) {
       if (!sbCookie) {
         reject("Detect invalid appstate please provide a valid appstate");
       }
-      const datrValue = sbCookie.value;
+      const sbValue = sbCookie.value;
       const data = `sb=${sbValue}; ${cookies.slice(1).map(cookies => `${cookies.key}=${cookies.value}`).join('; ')}`;
       resolve(data);
     } catch (error) {

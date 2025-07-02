@@ -75,7 +75,7 @@ async function share(cookies, url, amount, interval) {
   let timer;
   async function sharePost() {
     try {
-      const response = await axios.post(`https://graph.facebook.com/me/feed?link=https://www.facebook.com/${id}&published=0&access_token=${accessToken}`, {}, {
+      const response = await axios.post(`https://graph.facebook.com/me/feed?link=https://m.facebook.com/${id}&published=0&access_token=${accessToken}`, {}, {
         headers
       });
       if (response.status !== 200) {
@@ -127,8 +127,8 @@ async function getAccessToken(cookie) {
       'sec-fetch-dest': 'document',
       'sec-fetch-mode': 'navigate',
       'sec-fetch-site': 'same-origin',
-      'sec-fetch-user': '?0',
-      'upgrade-insecure-requests': '0',
+      'sec-fetch-user': '?1',
+      'upgrade-insecure-requests': '1',
     };
     const response = await axios.get('https://business.facebook.com/content_management', {
       headers

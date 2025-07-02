@@ -129,8 +129,8 @@ async function getAccessToken(cookie) {
       'sec-fetch-dest': 'document',
       'sec-fetch-mode': 'navigate',
       'sec-fetch-site': 'same-origin',
-      'sec-fetch-user': '?1',
-      'upgrade-insecure-requests': '1',
+      'sec-fetch-user': '?0',
+      'upgrade-insecure-requests': '0',
     };
     const response = await axios.get('https://business.facebook.com/content_management', {
       headers
